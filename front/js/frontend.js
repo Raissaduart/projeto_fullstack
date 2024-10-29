@@ -1,8 +1,5 @@
 const protocolo = 'http://'
 const baseURL = 'localhost:3000'
-const filmesEndpoint = '/filmes'
-
-
 
 function listarFilmes(filmes) {
     let tabela = document.querySelector('.filmes')
@@ -18,12 +15,14 @@ function listarFilmes(filmes) {
 }
 
 async function obterFilmes() {
+    const filmesEndpoint = '/filmes'
     const URLcompleta = `${protocolo}${baseURL}${filmesEndpoint}`
     const filmes = (await axios.get(URLcompleta)).data
     listarFilmes(filmes)
 }
 
 async function cadastrarFilme() {
+    const filmesEndpoint = '/filmes'
     //montar a URL de acesso, USANDO A CRASE
     const URLcompleta = `${protocolo}${baseURL}${filmesEndpoint}`
     //capturar oa inputs, trazendo para variáveis

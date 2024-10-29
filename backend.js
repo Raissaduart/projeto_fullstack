@@ -7,6 +7,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const app = express()
 app.use(express.json())
 app.use(cors())
@@ -106,8 +107,13 @@ app.post('/login', async (req, res) => {
     if (!senhaValida) {
         return res.status(401).json({ mensagem: "senha inválida" })
     }
-    //deixa assim por enquanto, já já arrumamos
-    res.end()
+    //aqui vamos gerar o token e devolver para o cliente
+    const token = jwt.sign(
+        { login: login },
+        "chave-temporária",
+        { expiresIn: "1h" }
+    )
+    res.status(200).json({ token: token })
 })
 
 
