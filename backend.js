@@ -76,7 +76,7 @@ app.post('/filmes', async (req, res) => {
     res.json(filmes)
 })
 
-app.post('/sigup', async (req, res) => {
+app.post('/signup', async (req, res) => {
     try {
         const login = req.body.login
         const password = req.body.password
